@@ -66,3 +66,19 @@ myprediction$Hired <-decision
 correct <- sum(myprediction$Hired==trainSample$Hired)
 accuracy <- correct/nrow(trainSample)
 accuracy
+
+
+test <- read.csv('test.csv')
+submission <- read.csv('sample_submission.csv')
+submission$Prediction <- 'No'
+submission[test$Coding=='Excellent'&test$Impression=='Outgoing'] <- 'Yes'
+submission[test$Major=='CS'&test$College=='Redbrick'] <- 'Yes'
+submission[test$Coding=='Excellent' & test$Impression=='Confident']<- 'Yes'
+submission[test$Coding=='Excellent'&test$Impression=='Shy']<-'Yes'
+submission[test$Coding=='OK'&(test$Impression=='Shy'|test$Impression=='Confident'|test$Impression=='Outgoing')] <- 'Yes'
+submission[test$College=='Redbrick'&(test$Coding=='Excellent'|test$Coding=='OK')]<-'Yes'
+submission[test$College=='Peters'&(test$Impression=='Nerdy'|test$Impression=='Outgoing')]<-'Yes'
+submission[test$College=='Redbrick'&test$Impression=='Nerdy']<-'Yes'
+submission[test$College=='Peters'&(test$Coding=='Excellent'|test$Coding=='OK')]<-'Yes'
+submission[test$College=='BYU'&(test$Coding=='Excellent'|test$Coding=='OK')]<-'Yes'
+head(submission)
