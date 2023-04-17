@@ -28,7 +28,7 @@ table(Hire[Hire$College=='BYU',]$Coding,Hire[Hire$College=='BYU',]$Hired)
 stat1 <- Hire[Hire$Coding=='Excellent' & Hire$Impression=='Outgoing',]
 barplot(table(stat1$Hired))
 stat2 <- Hire[Hire$Major=='CS'&Hire$College=='Redbrick',]
-barplot(table(stat3$Hired))
+barplot(table(stat2$Hired))
 stat3 <- Hire[Hire$Coding=='Excellent' & Hire$Impression=='Confident',]
 barplot(table(stat3$Hired))
 stat4 <- Hire[Hire$Coding=='Excellent'&Hire$Impression=='Shy',]
@@ -71,14 +71,14 @@ accuracy
 test <- read.csv('test.csv')
 submission <- read.csv('sample_submission.csv')
 submission$Prediction <- 'No'
-submission[test$Coding=='Excellent'&test$Impression=='Outgoing'] <- 'Yes'
-submission[test$Major=='CS'&test$College=='Redbrick'] <- 'Yes'
-submission[test$Coding=='Excellent' & test$Impression=='Confident']<- 'Yes'
-submission[test$Coding=='Excellent'&test$Impression=='Shy']<-'Yes'
-submission[test$Coding=='OK'&(test$Impression=='Shy'|test$Impression=='Confident'|test$Impression=='Outgoing')] <- 'Yes'
-submission[test$College=='Redbrick'&(test$Coding=='Excellent'|test$Coding=='OK')]<-'Yes'
-submission[test$College=='Peters'&(test$Impression=='Nerdy'|test$Impression=='Outgoing')]<-'Yes'
-submission[test$College=='Redbrick'&test$Impression=='Nerdy']<-'Yes'
-submission[test$College=='Peters'&(test$Coding=='Excellent'|test$Coding=='OK')]<-'Yes'
-submission[test$College=='BYU'&(test$Coding=='Excellent'|test$Coding=='OK')]<-'Yes'
-head(submission)
+submission[test$Coding=='Excellent' & test$Impression=='Outgoing',]$Prediction <- 'Yes'
+submission[test$Major=='CS'&test$College=='Redbrick',]$Prediction <- 'Yes'
+submission[test$Coding=='Excellent' & test$Impression=='Confident',]$Prediction<- 'Yes'
+submission[test$Coding=='Excellent'&test$Impression=='Shy',]$Prediction<-'Yes'
+submission[test$Coding=='OK'&(test$Impression=='Shy'|test$Impression=='Confident'|test$Impression=='Outgoing'),]$Prediction <- 'Yes'
+submission[test$College=='Redbrick'&(test$Coding=='Excellent'|test$Coding=='OK'),]$Prediction<-'Yes'
+submission[test$College=='Peters'&(test$Impression=='Nerdy'|test$Impression=='Outgoing'),]$Prediction<-'Yes'
+submission[test$College=='Redbrick'&test$Impression=='Nerdy',]$Prediction<-'Yes'
+submission[test$College=='Peters'&(test$Coding=='Excellent'|test$Coding=='OK'),]$Prediction<-'Yes'
+submission[test$College=='BYU'&(test$Coding=='Excellent'|test$Coding=='OK'),]$Prediction<-'Yes'
+write.csv(submission, 'submission.csv', row.names = FALSE)
