@@ -68,8 +68,8 @@ accuracy <- correct/nrow(trainSample)
 accuracy
 
 
-test <- read.csv('test.csv')
-submission <- read.csv('sample_submission.csv')
+test <- read.csv('test_challenge1.csv')
+submission <- read.csv('sample_submission_challenge1.csv')
 submission$Prediction <- 'No'
 submission[test$Coding=='Excellent' & test$Impression=='Outgoing',]$Prediction <- 'Yes'
 submission[test$Major=='CS'&test$College=='Redbrick',]$Prediction <- 'Yes'
